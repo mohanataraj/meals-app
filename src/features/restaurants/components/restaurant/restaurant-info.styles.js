@@ -29,7 +29,6 @@ export const RestCardContent = styled(Card.Content)`
   align-content: space-between;
   align-items: center;
   justify-content: left;
-  flex-wrap: wrap;
 `;
 
 export const Rating = styled.View`

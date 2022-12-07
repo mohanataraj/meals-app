@@ -1,16 +1,11 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import {
-  Searchbar,
-  ActivityIndicator,
-  MD2Colors,
-  Colors,
-} from "react-native-paper";
-import { View, FlatList, Text } from "react-native";
+import { ActivityIndicator, MD2Colors, Colors } from "react-native-paper";
+import { View, FlatList, Text, TouchableOpacity } from "react-native";
 
 // Relative imports...
 import { SafeArea } from "./utility/screen.utility";
-import { RestaurantInfo } from "../components/restaurant/restaurant-info.component";
+import { RestaurantCard } from "../components/restaurant/restaurant-card.component";
 import { RestaurantContext } from "../../../services/restaurants/mock/restaurants.context";
 import { LocationContext } from "../../../services/locations/locations.context";
 import { SearchBar } from "../components/search/search.component";
@@ -25,8 +20,6 @@ const SearchContainer = styled(View)`
 const RestaurantListContainer = styled.View`
   background-color: #fff;
   flex: 1;
-  flex-wrap: wrap;
-  flex-direction: row;
 
   // padding: ${(props) => props.theme.space[0]};
 `;
@@ -43,11 +36,10 @@ const RestaurantList = styled(FlatList).attrs({
 //   justify-content: "center";
 // `;
 
-export const RestaurantScreen = () => {
+export const RestaurantScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { restaurants, isLoading, error } = useContext(RestaurantContext);
   const { search, location, keyword } = useContext(LocationContext);
-  //console.log("LOC...", locationContext);
 
   const onChangeSearch = (query) => {
     return search(query);
@@ -64,12 +56,12 @@ export const RestaurantScreen = () => {
       <RestaurantListContainer key={restaurants.name}>
         <RestaurantList
           data={restaurants}
-          numColumns={2}
-          horizontal={false}
-          columnWrapperStyle={{ justifyContent: "space-between" }}
           renderItem={({ item }) => {
-            //console.log("ITEM: ", item);
-            return <RestaurantInfo restaurant={item} />;
+            return (
+              <TouchableOpacity onPress={() => navigation.navigate("Details")}>
+                <RestaurantCard restaurant={item} />
+              </TouchableOpacity>
+            );
           }}
           keyExtractor={(item) => item.name}
         />

@@ -22,8 +22,10 @@ import {
 export const RestaurantCard = ({ restaurant }) => {
   const { name, address, photos, isOpenNow, rating, icon, placeId } =
     restaurant;
-  const ratingArray = Array.from(new Array(Math.floor(rating)));
 
+  const ratingArray = !rating
+    ? Array.from(new Array(1))
+    : Array.from(new Array(Math.floor(Math.abs(rating))));
   return (
     <RestCard key={name} outlined={true}>
       <RestCardTitle title={name} subtitle={address} />
@@ -38,14 +40,18 @@ export const RestaurantCard = ({ restaurant }) => {
           </OpenSectionEnd>
           <Spacer position="left" size="large">
             <Rating>
-              {ratingArray.map((_, i) => (
-                <SvgXml
-                  key={`start-${placeId}-${i}`}
-                  xml={star}
-                  height={20}
-                  width={20}
-                />
-              ))}
+              {!ratingArray.length
+                ? 0
+                : ratingArray.map((_, i) => {
+                    return (
+                      <SvgXml
+                        key={`start-${placeId}-${i}`}
+                        xml={star}
+                        height={20}
+                        width={20}
+                      />
+                    );
+                  })}
             </Rating>
           </Spacer>
           <Spacer position="left" size="large">

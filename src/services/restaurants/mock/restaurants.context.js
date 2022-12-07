@@ -12,20 +12,18 @@ export const RestaurantContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const { location } = useContext(LocationContext);
 
-  const retrieveRestaurants = (location) => {
+  const retrieveRestaurants = async (location) => {
     setIsLoading(true);
-    setTimeout(() => {
-      restaurantRequest()
-        .then(restaurantMappedResult)
-        .then((transformedResponse) => {
-          setIsLoading(false);
-          setRestaurants(transformedResponse);
-        })
-        .catch((err) => {
-          setError(err);
-          //console.log("error", err);r
-        });
-    }, 2000);
+    await restaurantRequest(location)
+      .then(restaurantMappedResult)
+      .then((transformedResponse) => {
+        setIsLoading(false);
+        console.log("Transformed Response size: ", transformedResponse.length);
+        setRestaurants(transformedResponse);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   };
 
   useEffect(() => {
