@@ -1,5 +1,8 @@
 import styled from "styled-components/native";
 import { Card } from "react-native-paper";
+import { Platform } from "react-native";
+
+const isAndroid = Platform.OS === "android";
 
 export const Icon = styled.Image`
   width: 15px;
@@ -10,6 +13,7 @@ export const RestCard = styled(Card)`
   background-color: "#fff";
   padding: ${(props) => props.theme.space[3]};
   font-family: ${(props) => props.theme.fonts.body};
+  margin: ${isAndroid ? (props) => props.theme.space[3] : 0};
 `;
 
 export const RestCardTitle = styled(Card.Title)`
@@ -28,7 +32,7 @@ export const RestCardContent = styled(Card.Content)`
   padding: ${(props) => props.theme.space[0]};
   align-content: space-between;
   align-items: center;
-  justify-content: left;
+  //justify-content: left;
 `;
 
 export const Rating = styled.View`

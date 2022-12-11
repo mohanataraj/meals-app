@@ -14,7 +14,6 @@ const SearchContainer = styled(View)`
   padding: ${(props) => props.theme.space[2]};
   background-color: #fff; //make it container color...
   align-items: center;
-  justify-content: "center";
 `;
 
 const RestaurantListContainer = styled.View`
@@ -26,15 +25,9 @@ const RestaurantListContainer = styled.View`
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
-    padding: 0,
+    backgroundColor: "white",
   },
 })``;
-
-// const RestaurantInfoContainer = styled(RestaurantInfo)`
-//   background-color: #fff;
-//   align-items: "left";
-//   justify-content: "center";
-// `;
 
 export const RestaurantScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -58,7 +51,11 @@ export const RestaurantScreen = ({ navigation }) => {
           data={restaurants}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => navigation.navigate("Details")}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Details", { restaurant: item })
+                }
+              >
                 <RestaurantCard restaurant={item} />
               </TouchableOpacity>
             );

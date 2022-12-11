@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 //Relative Imports...
 import { RestaurantScreen } from "../../../src/features/restaurants/screens/restaurants.screen";
-import { MapScreen } from "../../../src/features/restaurants/screens/map.screen";
+import { MapScreen } from "../../features/restaurants/components/map/screen/map.screen";
 import { SettingScreen } from "../../../src/features/restaurants/screens/settings.screen";
 import { RestaurantsNavigator } from "./restaurants.navigator";
 //Context Imports....

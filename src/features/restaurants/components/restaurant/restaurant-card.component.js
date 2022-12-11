@@ -2,7 +2,7 @@
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 import { SvgXml } from "react-native-svg";
-import { Image } from "react-native";
+import { Image, Platform } from "react-native";
 //relative imports...
 import star from "../../../../assests/star.js";
 import open from "../../../../assests/open";
@@ -22,12 +22,25 @@ import {
 export const RestaurantCard = ({ restaurant }) => {
   const { name, address, photos, isOpenNow, rating, icon, placeId } =
     restaurant;
-
+  const isAndroid = Platform.OS === "android";
   const ratingArray = !rating
     ? Array.from(new Array(1))
     : Array.from(new Array(Math.floor(Math.abs(rating))));
   return (
-    <RestCard key={name} outlined={true}>
+    <RestCard
+      key={name}
+      elevation={4}
+      mode="elevated"
+      style={
+        isAndroid
+          ? {
+              shadowOpacity: 0.001,
+              borderRadius: 0.1,
+              shadowOffset: { width: -2, height: 2 },
+            }
+          : {}
+      }
+    >
       <RestCardTitle title={name} subtitle={address} />
       <RestCardContent>
         <Section>
