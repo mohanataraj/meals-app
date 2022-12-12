@@ -5,7 +5,8 @@ import { View } from "react-native";
 
 // Relative imports...
 import { LocationContext } from "../../../../services/locations/locations.context";
-
+import { FavouritesBar } from "../../../../components/favourite/favourites-bar.component";
+import { FavouriteContext } from "../../../../services/favourites/favourites.context";
 //Location service...
 
 const SearchContainer = styled(View)`
@@ -15,10 +16,11 @@ const SearchContainer = styled(View)`
   align-items: center;
 `;
 
-export const SearchBar = () => {
+export const SearchBar = ({ isFavouritesToggled, onFavouritesToggle }) => {
   // eslint-disable-next-line prettier/prettier
   const { keyword, isLoading, location, search, error } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
+  const { favourites } = useContext(FavouriteContext);
   useEffect(() => {
     setSearchKeyword(keyword);
   }, [keyword]);
@@ -37,7 +39,12 @@ export const SearchBar = () => {
         value={searchKeyword}
         onSubmitEditing={callSearch}
         keyboardAppearance="dark"
+        icon={isFavouritesToggled ? "heart" : "heart-outline"}
+        onIconPress={() => {
+          return onFavouritesToggle();
+        }}
       />
+      {isFavouritesToggled && <FavouritesBar favourites={favourites} />}
     </SearchContainer>
   );
 };

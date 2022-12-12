@@ -18,6 +18,7 @@ import {
   OpenSectionEnd,
   Rating,
 } from "./restaurant-info.styles";
+import { FavouriteComponent } from "../../../../components/favourite/favourite.component.js";
 
 export const RestaurantCard = ({ restaurant }) => {
   const { name, address, photos, isOpenNow, rating, icon, placeId } =
@@ -72,7 +73,9 @@ export const RestaurantCard = ({ restaurant }) => {
           </Spacer>
         </Section>
       </RestCardContent>
+
       <RestCardCover source={{ uri: photos[0] }} />
+      <FavouriteComponent restaurant={restaurant} />
     </RestCard>
   );
 };

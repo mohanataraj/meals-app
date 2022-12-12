@@ -9,6 +9,7 @@ import { RestaurantCard } from "../components/restaurant/restaurant-card.compone
 import { RestaurantContext } from "../../../services/restaurants/mock/restaurants.context";
 import { LocationContext } from "../../../services/locations/locations.context";
 import { SearchBar } from "../components/search/search.component";
+import { FavouriteContext } from "../../../services/favourites/favourites.context";
 const SearchContainer = styled(View)`
   //flex: no - hence grows dynamically
   padding: ${(props) => props.theme.space[2]};
@@ -33,14 +34,19 @@ export const RestaurantScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { restaurants, isLoading, error } = useContext(RestaurantContext);
   const { search, location, keyword } = useContext(LocationContext);
+  const { favourites } = useContext(FavouriteContext);
+  const [isToggled, setIsToggled] = useState(false);
 
   const onChangeSearch = (query) => {
     return search(query);
   };
-
+  console.log("FAvourites", favourites.length, "Toggled: ", isToggled);
   return (
     <SafeArea>
-      <SearchBar />
+      <SearchBar
+        isFavouritesToggled={isToggled}
+        onFavouritesToggle={() => setIsToggled(!isToggled)}
+      />
       {isLoading && (
         <View>
           <ActivityIndicator size={50} animating={true} color="red" />

@@ -16,6 +16,7 @@ import { RestaurantContextProvider } from "./src/services/restaurants/mock/resta
 import { LocationContextProvider } from "./src/services/locations/locations.context";
 // Navigator Import
 import { Navigation } from "./src/infrastructure/navigation";
+import { FavouriteContextProvider } from "./src/services/favourites/favourites.context";
 
 const isAndroid = Platform.OS === "android";
 
@@ -30,11 +31,13 @@ export default function App() {
   return (
     <Fragment>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantContextProvider>
-            <Navigation />
-          </RestaurantContextProvider>
-        </LocationContextProvider>
+        <FavouriteContextProvider>
+          <LocationContextProvider>
+            <RestaurantContextProvider>
+              <Navigation />
+            </RestaurantContextProvider>
+          </LocationContextProvider>
+        </FavouriteContextProvider>
       </ThemeProvider>
       <StatusBar style="auto" />
     </Fragment>
