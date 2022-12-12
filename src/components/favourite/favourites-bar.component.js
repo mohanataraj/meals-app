@@ -1,39 +1,48 @@
 import react from "react";
-import { Text, View, ScrollView } from "react-native";
+import { View, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
+import { AntDesign } from "@expo/vector-icons";
 import styled from "styled-components";
 import { CompactRestaurantInfo } from "../restaurants/restaurant-compact.component";
 import { Spacer } from "../spacer/spacer.component";
-
+import { Text } from "../typography/typography.component";
 const FavouritesWrapper = styled(View)`
   padding: 0px;
 `;
 
 export const FavouritesBar = ({ favourites }) => {
+  if (!favourites.length) {
+    return null;
+  }
   const navigation = useNavigation();
   return (
-    <ScrollView
-      horizontal
-      showHorizontalScrollIndicator={false}
-      bounces={true}
-      alwaysBounceHorizontal={true}
-    >
-      {favourites.map((restaurant) => {
-        console.log(navigation);
-        const key = restaurant.name;
-        return (
-          <Spacer position="left" size="small">
-            <Pressable
-              onPress={() =>
-                navigation.navigate("Details", { restaurant: restaurant })
-              }
-            >
-              <CompactRestaurantInfo key={key} restaurant={restaurant} />
-            </Pressable>
+    <FavouritesWrapper>
+      <Spacer size="medium">
+        <View style={{ flexDirection: "row" }}>
+          <Spacer position="right" size="medium">
+            <Text variant="error">Favourites</Text>
           </Spacer>
-        );
-      })}
-    </ScrollView>
+          <Spacer>
+            <AntDesign name="heart" size={15} color="red" />
+          </Spacer>
+        </View>
+      </Spacer>
+      <ScrollView horizontal showHorizontalScrollIndicator={false}>
+        {favourites.map((restaurant) => {
+          const key = restaurant.name;
+          return (
+            <Spacer position="left" size="small">
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Details", { restaurant: restaurant })
+                }
+              >
+                <CompactRestaurantInfo key={key} restaurant={restaurant} />
+              </TouchableOpacity>
+            </Spacer>
+          );
+        })}
+      </ScrollView>
+    </FavouritesWrapper>
   );
 };
