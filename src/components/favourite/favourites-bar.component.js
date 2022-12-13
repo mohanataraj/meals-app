@@ -14,6 +14,7 @@ export const FavouritesBar = ({ favourites }) => {
   if (!favourites.length) {
     return null;
   }
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigation = useNavigation();
   return (
     <FavouritesWrapper>
@@ -29,15 +30,17 @@ export const FavouritesBar = ({ favourites }) => {
       </Spacer>
       <ScrollView horizontal showHorizontalScrollIndicator={false}>
         {favourites.map((restaurant) => {
-          const key = restaurant.name;
           return (
-            <Spacer position="left" size="small">
+            <Spacer position="left" size="small" key={restaurant.name}>
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Details", { restaurant: restaurant })
                 }
               >
-                <CompactRestaurantInfo key={key} restaurant={restaurant} />
+                <CompactRestaurantInfo
+                  key={restaurant.name}
+                  restaurant={restaurant}
+                />
               </TouchableOpacity>
             </Spacer>
           );
