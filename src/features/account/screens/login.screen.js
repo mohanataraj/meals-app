@@ -8,11 +8,12 @@ import {
   AccountContainer,
   AccountCover,
   ErrorContainer,
+  AccountVideoBackground,
 } from "../components/account.styles";
 import { AuthenticationContext } from "../../../services/firebase/authentication/authentication.context";
 import { Text } from "../../../components/typography/typography.component";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = react.useState("");
   const [password, setPassword] = react.useState("");
   const { user, isLoading, error, onLogin, isAuthenticated } = react.useContext(
@@ -22,6 +23,9 @@ export const LoginScreen = () => {
   return (
     <AccountBackground>
       <AccountCover />
+      <Button icon="arrow-left" onPress={() => navigation.goBack()}>
+        Back
+      </Button>
       <AccountContainer>
         <TextInput
           label="Email"

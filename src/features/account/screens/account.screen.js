@@ -24,7 +24,7 @@ export const AccountScreen = ({ navigation }) => {
         </Button>
         <Spacer size="large" />
         <Button
-          icon="lock-open-outline"
+          icon="book-open-outline"
           color="red"
           mode="contained"
           style={{ padding: 5 }}

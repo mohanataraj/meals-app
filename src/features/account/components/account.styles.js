@@ -19,7 +19,7 @@ export const AccountCover = styled(View)`
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.2);
 `;
 export const AccountVideoBackground = () => (
   <Video
@@ -32,7 +32,7 @@ export const AccountVideoBackground = () => (
 export const AccountContainer = styled.View`
   background-color: rgba(255, 255, 255, 0.7);
   padding: ${(props) => props.theme.space[4]};
-  margin-top: ${(props) => props.theme.space[2]};
+  margin-top: ${(props) => props.theme.space[1]};
 `;
 
 export const AuthButton = styled.Button.attrs({})`
