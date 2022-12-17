@@ -11,12 +11,8 @@ import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 //Relative Imports...
 import { theme } from "./src/infrastructure/theme";
 
-//Context Imports....
-import { RestaurantContextProvider } from "./src/services/restaurants/mock/restaurants.context";
-import { LocationContextProvider } from "./src/services/locations/locations.context";
 // Navigator Import
 import { Navigation } from "./src/infrastructure/navigation";
-import { FavouriteContextProvider } from "./src/services/favourites/favourites.context";
 
 //firebase authentication and authorization...
 //import { app } from "./src/services/firebase/config/firebase.config";
@@ -54,13 +50,7 @@ export default function App() {
     <Fragment>
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider>
-          <FavouriteContextProvider>
-            <LocationContextProvider>
-              <RestaurantContextProvider>
-                <Navigation />
-              </RestaurantContextProvider>
-            </LocationContextProvider>
-          </FavouriteContextProvider>
+          <Navigation />
         </AuthenticationContextProvider>
       </ThemeProvider>
       <StatusBar style="auto" />
