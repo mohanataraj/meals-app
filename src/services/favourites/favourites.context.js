@@ -1,6 +1,11 @@
 import react, { createContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthenticationContext } from "../firebase/authentication/authentication.context";
+import {
+  addCollection,
+  addCollectionAndDoc,
+  getCollectionAndDocs,
+} from "../firebase/config/firebase.config";
 
 export const FavouriteContext = createContext();
 
@@ -12,6 +17,7 @@ export const FavouriteContextProvider = ({ children }) => {
     try {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem(`@favourites-${uid}`, jsonValue);
+      await addCollectionAndDoc(`user-favourites-${uid}`, value);
     } catch (e) {
       // saving error
       console.log("save favourite: ", e);
@@ -24,6 +30,7 @@ export const FavouriteContextProvider = ({ children }) => {
       if (value !== null) {
         // value previously stored
         setFavourites(JSON.parse(value));
+        getCollectionAndDocs(`user-favourites-${uid}`);
       }
     } catch (e) {
       // error reading value

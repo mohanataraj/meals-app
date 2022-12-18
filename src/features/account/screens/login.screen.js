@@ -1,8 +1,7 @@
 import react from "react";
-import { TextInput } from "react-native-paper";
-import { View } from "react-native";
+import { TextInput, Button } from "react-native-paper";
+import { View, KeyboardAvoidingView, Platform } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
-import { Button } from "react-native-paper";
 import {
   AccountBackground,
   AccountContainer,
@@ -21,50 +20,56 @@ export const LoginScreen = ({ navigation }) => {
   );
 
   return (
-    <AccountBackground>
-      <AccountCover />
-      <Button icon="arrow-left" onPress={() => navigation.goBack()}>
-        Back
-      </Button>
-      <AccountContainer>
-        <TextInput
-          label="Email"
-          type="outlined"
-          underlineColor="blue"
-          textContentType="emailAddress"
-          keyboardType="email-address"
-          activeUnderlineColor="blue"
-          autoCapitalization="none"
-          value={email}
-          style={{ width: 300 }}
-          onChangeText={(email) => setEmail(email)}
-        />
-
-        <Spacer size="large" />
-        <TextInput
-          underlineColor="blue"
-          activeUnderlineColor="blue"
-          label="Password"
-          textContentType="password"
-          secureTextEntry
-          value={password}
-          type="outlined"
-          style={{ width: 300 }}
-          onChangeText={(password) => setPassword(password)}
-        />
-        <ErrorContainer>
-          <Text variant="error"> {error}</Text>
-        </ErrorContainer>
-        <Button
-          icon="lock-open-outline"
-          color="red"
-          mode="contained"
-          style={{ padding: 5 }}
-          onPress={() => onLogin(email, password)}
-        >
-          Login
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
+    >
+      <AccountBackground>
+        <AccountCover />
+        <Button icon="arrow-left" onPress={() => navigation.goBack()}>
+          Back
         </Button>
-      </AccountContainer>
-    </AccountBackground>
+
+        <AccountContainer>
+          <TextInput
+            label="Email"
+            type="outlined"
+            underlineColor="blue"
+            textContentType="emailAddress"
+            keyboardType="email-address"
+            activeUnderlineColor="blue"
+            autoCapitalization="none"
+            value={email}
+            style={{ width: 300 }}
+            onChangeText={(email) => setEmail(email)}
+          />
+
+          <Spacer size="large" />
+          <TextInput
+            underlineColor="blue"
+            activeUnderlineColor="blue"
+            label="Password"
+            textContentType="password"
+            secureTextEntry
+            value={password}
+            type="outlined"
+            style={{ width: 300 }}
+            onChangeText={(password) => setPassword(password)}
+          />
+          <ErrorContainer>
+            <Text variant="error"> {error}</Text>
+          </ErrorContainer>
+          <Button
+            icon="lock-open-outline"
+            color="red"
+            mode="contained"
+            style={{ padding: 5 }}
+            onPress={() => onLogin(email, password)}
+          >
+            Login
+          </Button>
+        </AccountContainer>
+      </AccountBackground>
+    </KeyboardAvoidingView>
   );
 };
