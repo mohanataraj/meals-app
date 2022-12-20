@@ -18,13 +18,13 @@ const SearchContainer = styled(View)`
   align-items: center;
 `;
 
-const RestaurantListContainer = styled.View`
+export const RestaurantListContainer = styled.View`
   background-color: #fff;
 
   // padding: ${(props) => props.theme.space[0]};
 `;
 
-const RestaurantList = styled(FlatList).attrs({
+export const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
     backgroundColor: "white",
     alignSelf: "center",

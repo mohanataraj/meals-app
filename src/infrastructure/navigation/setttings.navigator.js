@@ -5,6 +5,7 @@ import {
   CardStyleInterpolators,
 } from "@react-navigation/native-stack";
 import { SettingScreen } from "../../features/restaurants/screens/settings.screen";
+import { FavouriteScreen } from "../../features/restaurants/screens/favourites.screen";
 
 const SettingStack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ export const SettingsNavigator = ({ route, navigation }) => {
         name="Settings"
         component={SettingScreen}
       />
-      <SettingStack.Screen name="Favourites" component={() => null} />
+      <SettingStack.Screen name="Favourites" component={FavouriteScreen} />
     </SettingStack.Navigator>
   );
 };
