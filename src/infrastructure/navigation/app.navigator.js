@@ -4,11 +4,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 //Relative Imports...
-import { RestaurantScreen } from "../../../src/features/restaurants/screens/restaurants.screen";
 import { MapScreen } from "../../features/restaurants/components/map/screen/map.screen";
-import { SettingScreen } from "../../../src/features/restaurants/screens/settings.screen";
 import { RestaurantsNavigator } from "./restaurants.navigator";
-import { NavigationContainer } from "@react-navigation/native";
+import { SettingsNavigator } from "./setttings.navigator";
 //Context Imports....
 //Context Imports....
 import { RestaurantContextProvider } from "../../services/restaurants/mock/restaurants.context";
@@ -44,7 +42,7 @@ export const AppNavigator = () => {
           >
             <Tab.Screen name="Home" component={RestaurantsNavigator} />
             <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingScreen} />
+            <Tab.Screen name="Settings" component={SettingsNavigator} />
           </Tab.Navigator>
         </RestaurantContextProvider>
       </LocationContextProvider>

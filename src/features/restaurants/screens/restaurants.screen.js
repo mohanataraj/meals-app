@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { ActivityIndicator, MD2Colors, Colors } from "react-native-paper";
-import { View, FlatList, Text, TouchableOpacity } from "react-native";
+import { View, FlatList, Text, TouchableOpacity, Platform } from "react-native";
 
 // Relative imports...
 import { SafeArea } from "./utility/screen.utility";
@@ -10,6 +10,7 @@ import { RestaurantContext } from "../../../services/restaurants/mock/restaurant
 import { LocationContext } from "../../../services/locations/locations.context";
 import { SearchBar } from "../components/search/search.component";
 import { FavouriteContext } from "../../../services/favourites/favourites.context";
+
 const SearchContainer = styled(View)`
   //flex: no - hence grows dynamically
   padding: ${(props) => props.theme.space[2]};
@@ -19,7 +20,6 @@ const SearchContainer = styled(View)`
 
 const RestaurantListContainer = styled.View`
   background-color: #fff;
-  flex: 1;
 
   // padding: ${(props) => props.theme.space[0]};
 `;
@@ -27,6 +27,8 @@ const RestaurantListContainer = styled.View`
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
     backgroundColor: "white",
+    alignSelf: "center",
+    alignItems: "center",
   },
 })``;
 

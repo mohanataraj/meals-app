@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TransitionPresets } from "@react-navigation/stack";
 import { RestaurantScreen } from "../../features/restaurants/screens/restaurants.screen";
-import { Text } from "react-native";
+
 import { RestaurantDetails } from "../../features/restaurants/screens/secondary-screens/restuarant-details";
 const RestaurantStack = createNativeStackNavigator();
 

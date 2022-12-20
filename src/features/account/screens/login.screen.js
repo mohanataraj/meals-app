@@ -1,7 +1,8 @@
 import react from "react";
 import { TextInput, Button } from "react-native-paper";
-import { View, KeyboardAvoidingView, Platform } from "react-native";
+import { KeyboardAvoidingView, Platform } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import AnimatedLottieView from "lottie-react-native";
 import {
   AccountBackground,
   AccountContainer,
@@ -26,6 +27,13 @@ export const LoginScreen = ({ navigation }) => {
     >
       <AccountBackground>
         <AccountCover />
+        <AnimatedLottieView
+          key="animation"
+          autoPlay
+          loop
+          resizeMode="cover"
+          source={require("../../../assests/peas.json")}
+        />
         <Button icon="arrow-left" onPress={() => navigation.goBack()}>
           Back
         </Button>

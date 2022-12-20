@@ -55,7 +55,7 @@ export const AuthenticationContextProvider = ({ children }) => {
       .signOut()
       .then(() => {
         console.log("user", firebase.auth().currentUser, "has now Signed Out");
-        !firebase.auth().currentUser ? setIsAuthenticated(false) : null;
+        !firebase.auth().currentUser ? setIsAuthenticated(false) : {};
       })
       .catch((error) => {
         setError(error);

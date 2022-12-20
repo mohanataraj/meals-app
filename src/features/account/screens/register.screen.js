@@ -16,8 +16,9 @@ export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = react.useState("");
   const [password, setPassword] = react.useState("");
   const [repeatedPassword, setRepeatedPassword] = react.useState("");
-  const { user, isLoading, error, onLogin, isAuthenticated, registerUser } =
-    react.useContext(AuthenticationContext);
+  const { user, isLoading, error, registerUser } = react.useContext(
+    AuthenticationContext
+  );
 
   return (
     <KeyboardAvoidingView
