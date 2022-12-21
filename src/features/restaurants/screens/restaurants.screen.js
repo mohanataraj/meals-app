@@ -10,7 +10,7 @@ import { RestaurantContext } from "../../../services/restaurants/mock/restaurant
 import { LocationContext } from "../../../services/locations/locations.context";
 import { SearchBar } from "../components/search/search.component";
 import { FavouriteContext } from "../../../services/favourites/favourites.context";
-
+import { FadeIn } from "../../../components/animations/fade.animation";
 const SearchContainer = styled(View)`
   //flex: no - hence grows dynamically
   padding: ${(props) => props.theme.space[2]};
@@ -45,32 +45,34 @@ export const RestaurantScreen = ({ navigation }) => {
   console.log("FAvourites", favourites.length, "Toggled: ", isToggled);
   return (
     <SafeArea>
-      <SearchBar
-        isFavouritesToggled={isToggled}
-        onFavouritesToggle={() => setIsToggled(!isToggled)}
-      />
-      {isLoading && (
-        <View>
-          <ActivityIndicator size={50} animating={true} color="red" />
-        </View>
-      )}
-      <RestaurantListContainer key={restaurants.name}>
-        <RestaurantList
-          data={restaurants}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("Details", { restaurant: item })
-                }
-              >
-                <RestaurantCard restaurant={item} />
-              </TouchableOpacity>
-            );
-          }}
-          keyExtractor={(item) => item.name}
+      <FadeIn>
+        <SearchBar
+          isFavouritesToggled={isToggled}
+          onFavouritesToggle={() => setIsToggled(!isToggled)}
         />
-      </RestaurantListContainer>
+        {isLoading && (
+          <View>
+            <ActivityIndicator size={50} animating={true} color="red" />
+          </View>
+        )}
+        <RestaurantListContainer key={restaurants.name}>
+          <RestaurantList
+            data={restaurants}
+            renderItem={({ item }) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("Details", { restaurant: item })
+                  }
+                >
+                  <RestaurantCard restaurant={item} />
+                </TouchableOpacity>
+              );
+            }}
+            keyExtractor={(item) => item.name}
+          />
+        </RestaurantListContainer>
+      </FadeIn>
     </SafeArea>
   );
 };
